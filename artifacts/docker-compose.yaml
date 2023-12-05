@@ -259,7 +259,7 @@ services:
       - CORE_PEER_CHAINCODEADDRESS=peer0.org1.example.com:7052
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
       # Peer used to bootstrap gossip within organisation
-      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org1.example.com:8051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org1.example.com:7061
       # Exposed for discovery Service
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.example.com:7051
 
@@ -301,14 +301,14 @@ services:
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
 
       - CORE_PEER_ID=peer1.org1.example.com
-      - CORE_PEER_ADDRESS=peer1.org1.example.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer1.org1.example.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_ADDRESS=peer1.org1.example.com:7061
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7061
+      - CORE_PEER_CHAINCODEADDRESS=peer1.org1.example.com:7062
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7062
       # Peer used to bootstrap gossip within organisation
-      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org1.example.com:8061
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051
       # Exposed for discovery Service
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1.example.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1.example.com:7061
 
       # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
 
@@ -325,7 +325,7 @@ services:
     depends_on:
       - couchdb01
     ports:
-      - 7061:7051
+      - 7061:7061
     volumes:
       - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp:/etc/hyperledger/crypto/peer/msp
       - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls:/etc/hyperledger/crypto/peer/tls
@@ -348,13 +348,13 @@ services:
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
 
       - CORE_PEER_ID=peer0.org2.example.com
-      - CORE_PEER_ADDRESS=peer0.org2.example.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.org2.example.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_ADDRESS=peer0.org2.example.com:9051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.org2.example.com:9052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
       # Exposed for discovery Service
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.example.com:7051
-      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org2.example.com:10051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.example.com:9051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org2.example.com:9061
 
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb10:5984
@@ -370,7 +370,7 @@ services:
     depends_on:
       - couchdb10
     ports:
-      - 9051:7051
+      - 9051:9051
     volumes:
       - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp:/etc/hyperledger/crypto/peer/msp
       - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls:/etc/hyperledger/crypto/peer/tls
@@ -393,13 +393,13 @@ services:
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
 
       - CORE_PEER_ID=peer1.org2.example.com
-      - CORE_PEER_ADDRESS=peer1.org2.example.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer1.org2.example.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_ADDRESS=peer1.org2.example.com:9061
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:9061
+      - CORE_PEER_CHAINCODEADDRESS=peer1.org2.example.com:9062
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9062
       # Exposed for discovery Service
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org2.example.com:7051
-      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org2.example.com:10061
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org2.example.com:9061
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:9051
 
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb11:5984
@@ -415,7 +415,7 @@ services:
     depends_on:
       - couchdb11
     ports:
-      - 9061:7051
+      - 9061:9061
     volumes:
       - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/msp:/etc/hyperledger/crypto/peer/msp
       - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls:/etc/hyperledger/crypto/peer/tls
@@ -438,15 +438,15 @@ services:
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
 
       - CORE_PEER_ID=peer0.org3.example.com
-      - CORE_PEER_ADDRESS=peer0.org3.example.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.org3.example.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_ADDRESS=peer0.org3.example.com:11051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:11051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.org3.example.com:11052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:11052
       # Peer used to bootstrap gossip within organisation
-      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org3.example.com:12051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org3.example.com:11061
 
       # Exposed for discovery Service
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org3.example.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org3.example.com:11051
 
       # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
 
@@ -463,7 +463,7 @@ services:
     depends_on:
       - couchdb20
     ports:
-      - 11051:7051
+      - 11051:11051
     volumes:
       - ./channel/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/msp:/etc/hyperledger/crypto/peer/msp
       - ./channel/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls:/etc/hyperledger/crypto/peer/tls
@@ -485,15 +485,15 @@ services:
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
 
       - CORE_PEER_ID=peer1.org3.example.com
-      - CORE_PEER_ADDRESS=peer1.org3.example.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer1.org3.example.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_ADDRESS=peer1.org3.example.com:11061
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:11061
+      - CORE_PEER_CHAINCODEADDRESS=peer1.org3.example.com:11062
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:11062
       # Peer used to bootstrap gossip within organisation
-      # - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org3.example.com:12061
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org3.example.com:11051
 
       # Exposed for discovery Service
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org3.example.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org3.example.com:11051
 
       # - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9440
 
@@ -510,7 +510,7 @@ services:
     depends_on:
       - couchdb21
     ports:
-      - 11061:7051
+      - 11061:11061
     volumes:
       - ./channel/crypto-config/peerOrganizations/org3.example.com/peers/peer1.org3.example.com/msp:/etc/hyperledger/crypto/peer/msp
       - ./channel/crypto-config/peerOrganizations/org3.example.com/peers/peer1.org3.example.com/tls:/etc/hyperledger/crypto/peer/tls
