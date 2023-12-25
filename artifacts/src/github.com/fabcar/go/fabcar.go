@@ -96,6 +96,52 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 	// return shim.Error("Invalid Smart Contract function name.")
 }
 
+// func (t *SimpleChaincode) Invoke(stub *shim.ChaincodeStub, function string, args []string) ([]byte, error) {
+// 	var event string // Event entity
+// 	var eventVal int // State of event
+// 	var err error
+
+// 	if len(args) != 2 {
+// 		return nil, errors.New("Incorrect number of arguments. Expecting 2")
+// 	}
+
+// 	event = args[0]
+// 	eventVal, err = strconv.Atoi(args[1])
+// 	if err != nil {
+// 		return nil, errors.New("Expected integer value for event state change")
+// 	}
+
+// 	if eventVal != 1 {
+// 		fmt.Printf("Unexpected event. Doing nothing\n")
+// 		return nil, nil
+// 	}
+
+// 	// Get the chaincode to call from the ledger
+// 	chainCodeToCall, err := t.getChaincodeToCall(stub)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	f := "invoke"
+// 	invokeArgs := []string{"a", "b", "10"}
+// 	response, err := stub.InvokeChaincode(chainCodeToCall, f, invokeArgs)
+// 	if err != nil {
+// 		errStr := fmt.Sprintf("Failed to invoke chaincode. Got error: %s", err.Error())
+// 		fmt.Printf(errStr)
+// 		return nil, errors.New(errStr)
+// 	}
+
+// 	fmt.Printf("Invoke chaincode successful. Got response %s", string(response))
+
+// 	// Write the event state back to the ledger
+// 	err = stub.PutState(event, []byte(strconv.Itoa(eventVal)))
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	return nil, nil
+// }
+
 func (s *SmartContract) queryCar(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 1 {

@@ -60,7 +60,7 @@ services:
 
   orderer.example.com:
     container_name: orderer.example.com
-    image: hyperledger/fabric-orderer:2.2.2
+    image: hyperledger/fabric-orderer:latest
     dns_search: .
     environment:
       - ORDERER_GENERAL_LOGLEVEL=info
@@ -99,7 +99,7 @@ services:
 
   orderer2.example.com:
     container_name: orderer2.example.com
-    image: hyperledger/fabric-orderer:2.2.2
+    image: hyperledger/fabric-orderer:latest
     dns_search: .
     environment:
       - ORDERER_GENERAL_LOGLEVEL=info
@@ -138,7 +138,7 @@ services:
 
   orderer3.example.com:
     container_name: orderer3.example.com
-    image: hyperledger/fabric-orderer:2.2.2
+    image: hyperledger/fabric-orderer:latest
     dns_search: .
     environment:
       - ORDERER_GENERAL_LOGLEVEL=info
@@ -177,7 +177,7 @@ services:
 
   couchdb00:
     container_name: couchdb00
-    image: couchdb:3.1.1
+    image: couchdb:latest
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=adminpw
@@ -188,7 +188,7 @@ services:
 
   couchdb01:
     container_name: couchdb01
-    image: couchdb:3.1.1
+    image: couchdb:latest
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=adminpw
@@ -199,7 +199,7 @@ services:
 
   couchdb10:
     container_name: couchdb10
-    image: couchdb:3.1.1
+    image: couchdb:latest
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=adminpw
@@ -210,7 +210,7 @@ services:
 
   couchdb11:
     container_name: couchdb11
-    image: couchdb:3.1.1
+    image: couchdb:latest
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=adminpw
@@ -221,7 +221,7 @@ services:
 
   couchdb20:
     container_name: couchdb20
-    image: couchdb:3.1.1
+    image: couchdb:latest
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=adminpw
@@ -232,7 +232,7 @@ services:
 
   couchdb21:
     container_name: couchdb21
-    image: couchdb:3.1.1
+    image: couchdb:latest
     environment:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=adminpw

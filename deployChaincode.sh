@@ -79,7 +79,7 @@ presetup() {
 
 setGlobalsForChaincode() {
     CC_RUNTIME_LANGUAGE="golang"
-    VERSION="3"
+    VERSION="1"
     CC_SRC_PATH="./artifacts/src/github.com/fabcar/go"
     CC_NAME="fabcar"
 }
@@ -300,18 +300,18 @@ chaincodeInitLedger() {
     peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com \
         --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} \
         --peerAddresses localhost:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
-        -c '{"function":"initLedger","Args":[]}'
+        -c '{"function":"InitLedger","Args":[]}'
 }
 
 chaincodeInvoke() {
-    # setGlobalsForChaincode
+    setGlobalsForChaincode
 
     # setGlobalsForPeer0Org1
     # peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com \
-    # --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} \
-    # --peerAddresses localhost:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
-    # --peerAddresses localhost:9051 --tlsRootCertFiles $PEER0_ORG2_CA  \
-    # -c '{"function":"initLedger","Args":[]}'
+    #     --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CC_NAME} \
+    #     --peerAddresses localhost:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
+    #     --peerAddresses localhost:9051 --tlsRootCertFiles $PEER0_ORG2_CA \
+    #     -c '{"function":"InitLedger","Args":[]}'
 
     ## Create Car
     setGlobalsForPeer0Org1
@@ -325,7 +325,7 @@ chaincodeInvoke() {
         --tlsRootCertFiles $PEER0_ORG1_CA \
         --peerAddresses localhost:9051 \
         --tlsRootCertFiles $PEER0_ORG2_CA \
-        -c '{"function": "createCar","Args":["P0O1", "Audi", "R8", "Red", "Pavan"]}'
+        -c '{"function": "createCar","Args":["P0O1", "Mers", "V8", "Grey", "Rohan"]}'
 
     ## Create Car
     setGlobalsForPeer1Org2
@@ -346,13 +346,13 @@ chaincodeInvoke() {
 
 chaincodeQuery() {
     setGlobalsForChaincode
-    setGlobalsForPeer0Org2
+    setGlobalsForPeer1Org2
 
-    peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "queryCar","Args":["P0O0"]}'
+    peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "queryCar","Args":["P0O1"]}'
     peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function": "queryCar","Args":["P1O2"]}'
     # Query all cars
 
-    peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function":"queryAllCars","Args":[]}'
+    # peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"function":"queryAllCars","Args":[]}'
 
     # Query Car by Id
     #'{"Args":["GetSampleData","Key1"]}'
@@ -363,21 +363,20 @@ chaincodeQuery() {
 
 # Run this function if you add any new dependency in chaincode
 # presetup
-
 # packageChaincode
+
 # installChaincode
 # queryInstalled
 # approveForOrgs
 # checkCommitReadyness
-# # sleep 5
 # commitChaincodeDefination
 # queryCommitted
 # chaincodeInvokeInit
-# sleep 5
-chaincodeInitLedger
-sleep 3
-chaincodeQuery
-sleep 1
+# sleep 3
+# # chaincodeInitLedger
+# sleep 3
+# chaincodeQuery
+# sleep 1
 chaincodeInvoke
 sleep 1
 chaincodeQuery
