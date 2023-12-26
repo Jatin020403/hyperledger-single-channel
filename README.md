@@ -31,3 +31,8 @@ Steps:
    cd ..
    ./createChannel.sh
    ```
+
+5. Deploy Chaincode
+   ```sh
+   ./deployChaincode.sh
+   ```
